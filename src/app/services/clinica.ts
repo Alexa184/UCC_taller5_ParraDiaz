@@ -21,7 +21,7 @@ export class ClinicaService {
   eliminarPaciente(id: number) {
     return this.http.post(this.url, { id, accion: 'eliminar_paciente' });
   }
-
+ //Comentario de prueba de commits
   // VISITAS
   crearVisita(datos: any) {
     return this.http.post(this.url, { ...datos, accion: 'crear_visita' });
