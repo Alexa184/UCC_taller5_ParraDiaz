@@ -1,0 +1,127 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Clínica UCC</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-text color="success"><p>{{ mensaje }}</p></ion-text>
+
+  <!-- CREAR PACIENTE -->
+  <ion-card>
+    <ion-card-header><ion-card-title>Nuevo Paciente</ion-card-title></ion-card-header>
+    <ion-card-content>
+      <ion-item><ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="paciente.nombre"></ion-input></ion-item>
+      <ion-item><ion-label position="floating">Fecha de nacimiento</ion-label>
+        <ion-input type="date" [(ngModel)]="paciente.fecha_nacimiento"></ion-input></ion-item>
+      <ion-item>
+        <ion-label>Género</ion-label>
+        <ion-select [(ngModel)]="paciente.genero">
+          <ion-select-option value="Masculino">Masculino</ion-select-option>
+          <ion-select-option value="Femenino">Femenino</ion-select-option>
+          <ion-select-option value="Otro">Otro</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="block" (click)="guardarPaciente()">Guardar Paciente</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- LISTA PACIENTES -->
+  <ion-card>
+    <ion-card-header><ion-card-title>Pacientes Registrados</ion-card-title></ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let p of pacientes">
+          <ion-label>
+            <h2>{{ p.nombre }}</h2>
+            <p>{{ p.fecha_nacimiento }} | {{ p.genero }}</p>
+          </ion-label>
+          <ion-button color="danger" slot="end" (click)="eliminarPaciente(p.id)">Eliminar</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- ACTUALIZAR PACIENTE -->
+  <ion-card>
+    <ion-card-header><ion-card-title>Actualizar Paciente</ion-card-title></ion-card-header>
+    <ion-card-content>
+      <ion-item><ion-label position="floating">ID</ion-label>
+        <ion-input type="number" [(ngModel)]="editPaciente.id"></ion-input></ion-item>
+      <ion-item><ion-label position="floating">Nombre</ion-label>
+        <ion-input [(ngModel)]="editPaciente.nombre"></ion-input></ion-item>
+      <ion-item><ion-label position="floating">Fecha</ion-label>
+        <ion-input type="date" [(ngModel)]="editPaciente.fecha_nacimiento"></ion-input></ion-item>
+      <ion-item>
+        <ion-label>Género</ion-label>
+        <ion-select [(ngModel)]="editPaciente.genero">
+          <ion-select-option value="Masculino">Masculino</ion-select-option>
+          <ion-select-option value="Femenino">Femenino</ion-select-option>
+          <ion-select-option value="Otro">Otro</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="block" (click)="actualizarPaciente()">Actualizar Paciente</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- CREAR VISITA -->
+  <ion-card>
+    <ion-card-header><ion-card-title>Nueva Visita</ion-card-title></ion-card-header>
+    <ion-card-content>
+      <ion-item><ion-label position="floating">ID Paciente</ion-label>
+        <ion-input type="number" [(ngModel)]="visita.id_paciente"></ion-input></ion-item>
+      <ion-item><ion-label position="floating">Fecha visita</ion-label>
+        <ion-input type="date" [(ngModel)]="visita.fecha_visita"></ion-input></ion-item>
+      <ion-item><ion-label position="floating">Médico</ion-label>
+        <ion-input [(ngModel)]="visita.medico"></ion-input></ion-item>
+      <ion-item>
+        <ion-label>Medicamentos</ion-label>
+        <ion-select [(ngModel)]="visita.medicamentos">
+          <ion-select-option value="Si">Sí</ion-select-option>
+          <ion-select-option value="No">No</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="block" (click)="guardarVisita()">Guardar Visita</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- LISTA VISITAS -->
+  <ion-card>
+    <ion-card-header><ion-card-title>Visitas Registradas</ion-card-title></ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item *ngFor="let v of visitas">
+          <ion-label>
+            <h2>Paciente ID: {{ v.id_paciente }}</h2>
+            <p>{{ v.fecha_visita }} | Dr. {{ v.medico }}</p>
+          </ion-label>
+          <ion-button color="danger" slot="end" (click)="eliminarVisita(v.id)">Eliminar</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- ACTUALIZAR VISITA -->
+  <ion-card>
+    <ion-card-header><ion-card-title>Actualizar Visita</ion-card-title></ion-card-header>
+    <ion-card-content>
+      <ion-item><ion-label position="floating">ID Visita</ion-label>
+        <ion-input type="number" [(ngModel)]="editVisita.id"></ion-input></ion-item>
+      <ion-item><ion-label position="floating">Fecha</ion-label>
+        <ion-input type="date" [(ngModel)]="editVisita.fecha_visita"></ion-input></ion-item>
+      <ion-item><ion-label position="floating">Médico</ion-label>
+        <ion-input [(ngModel)]="editVisita.medico"></ion-input></ion-item>
+      <ion-item>
+        <ion-label>Medicamentos</ion-label>
+        <ion-select [(ngModel)]="editVisita.medicamentos">
+          <ion-select-option value="Si">Sí</ion-select-option>
+          <ion-select-option value="No">No</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="block" (click)="actualizarVisita()">Actualizar Visita</ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

@@ -1,0 +1,7 @@
+{
+  "name": "UCC_taller5_ParraDiaz",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
